@@ -4,7 +4,7 @@ import { MetamaskActions, MetaMaskContext } from '../hooks';
 import {
   connectSnap,
   getSnap,
-  sendHello,
+  showGasFees,
   shouldDisplayReconnectButton,
 } from '../utils';
 import {
@@ -117,9 +117,9 @@ const Index = () => {
     }
   };
 
-  const handleSendHelloClick = async () => {
+  const handleShowGasFeesClick = async () => {
     try {
-      await sendHello();
+      await showGasFees();
     } catch (e) {
       console.error(e);
       dispatch({ type: MetamaskActions.SetError, payload: e });
@@ -185,12 +185,12 @@ const Index = () => {
         )}
         <Card
           content={{
-            title: 'Send Hello message',
+            title: 'Show gas fees',
             description:
-              'Display a custom message within a confirmation screen in MetaMask.',
+              'Display a gas fee estimate within a confirmation screen in MetaMask.',
             button: (
               <SendHelloButton
-                onClick={handleSendHelloClick}
+                onClick={handleShowGasFeesClick}
                 disabled={!state.installedSnap}
               />
             ),

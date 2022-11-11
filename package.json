@@ -1,15 +1,15 @@
 {
-  "name": "@metamask/template-snap-monorepo",
-  "version": "0.1.0",
+  "name": "gas-fee-snap",
+  "version": "0.2.0",
   "private": true,
-  "description": "",
-  "homepage": "https://github.com/MetaMask/template-snap-monorepo#readme",
+  "description": "The 5-Minute Snap Tutorial",
+  "homepage": "https://github.com/ilovehackathons/gas-fee-snap",
   "bugs": {
-    "url": "https://github.com/MetaMask/template-snap-monorepo/issues"
+    "url": "https://github.com/ilovehackathons/gas-fee-snap/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MetaMask/template-snap-monorepo.git"
+    "url": "git+https://github.com/ilovehackathons/gas-fee-snap.git"
   },
   "license": "(MIT-0 OR Apache-2.0)",
   "author": "",

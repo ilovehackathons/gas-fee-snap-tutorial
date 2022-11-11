@@ -1,6 +1,16 @@
 import { OnRpcRequestHandler } from '@metamask/snap-types';
 
 /**
+ * Get a gas fee estimate from a public API endpoint.
+ *
+ * @returns A gas fee estimate.
+ */
+async function getFees() {
+  const response = await fetch('https://www.etherchain.org/api/gasPriceOracle');
+  return response.text();
+}
+
+/**
  * Get a message from the origin. For demonstration purposes only.
  *
  * @param originString - The origin string.
@@ -22,18 +32,26 @@ export const getMessage = (originString: string): string =>
  */
 export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
   switch (request.method) {
-    case 'hello':
-      return wallet.request({
-        method: 'snap_confirm',
-        params: [
-          {
-            prompt: getMessage(origin),
-            description:
-              'This custom confirmation is just for display purposes.',
-            textAreaContent:
-              'But you can edit the snap source code to make it do something, if you want to!',
-          },
-        ],
+    case 'fees':
+      return getFees().then((fees) => {
+        const feesObject = JSON.parse(fees);
+        const baseFee = parseFloat(feesObject.currentBaseFee);
+        const safeLow = Math.ceil(baseFee + parseFloat(feesObject.safeLow));
+        const standard = Math.ceil(baseFee + parseFloat(feesObject.standard));
+        const fastest = Math.ceil(baseFee + parseFloat(feesObject.fastest));
+        return wallet.request({
+          method: 'snap_confirm',
+          params: [
+            {
+              prompt: getMessage(origin),
+              description: 'Current Gas Fees from etherchain.org:',
+              textAreaContent:
+                `Low: ${safeLow}\n` +
+                `Average: ${standard}\n` +
+                `High: ${fastest}\n`,
+            },
+          ],
+        });
       });
     default:
       throw new Error('Method not found.');

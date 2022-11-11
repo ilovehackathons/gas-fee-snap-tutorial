@@ -1,24 +1,25 @@
 {
   "version": "0.1.0",
-  "description": "An example Snap written in TypeScript.",
-  "proposedName": "TypeScript Example Snap",
+  "description": "The 5-Minute Snap Tutorial",
+  "proposedName": "Gas Fee Snap",
   "repository": {
     "type": "git",
     "url": "https://github.com/MetaMask/template-snap-monorepo.git"
   },
   "source": {
-    "shasum": "naL9tJT7QHAFER/TGfTcjwUFZUMhrsWY5f8XqX28M/g=",
+    "shasum": "skzr22tXjjG5rShP3Jl3X9SuH/TXYXtoxtwPLyRI3vY=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
-        "iconPath": "images/icon.svg",
+        "iconPath": "images/gas.svg",
         "packageName": "snap",
         "registry": "https://registry.npmjs.org/"
       }
     }
   },
   "initialPermissions": {
-    "snap_confirm": {}
+    "snap_confirm": {},
+    "endowment:network-access": {}
   },
   "manifestVersion": "0.1"
 }
